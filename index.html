@@ -1,14 +1,19 @@
-<!DOCTYPE html>
+ft<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nair Research Lab</title>
     
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
@@ -20,18 +25,9 @@
                     },
                     colors: {
                         academic: {
-                            blue: '#0B2046', 
-                            light: '#F8FAFC', 
-                            accent: '#3B82F6', 
-                        }
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.3s ease-in-out',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0', transform: 'translateY(10px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                            blue: '#0B2046', // Deep navy
+                            light: '#F8FAFC', // Very light gray/blue
+                            accent: '#3B82F6', // Brighter blue for links/accents
                         }
                     }
                 }
@@ -40,427 +36,286 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; }
-        /* Prevent layout shift during simulated page loads */
-        main { min-height: calc(100vh - 64px - 300px); } 
     </style>
 </head>
-<body class="bg-academic-light text-slate-800 antialiased selection:bg-academic-accent selection:text-white flex flex-col min-h-screen">
+<body class="bg-academic-light text-slate-800 antialiased selection:bg-academic-accent selection:text-white">
 
-    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm h-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-            <div class="flex justify-between h-full items-center">
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center gap-2">
                     <i class="fa-solid fa-atom text-academic-blue text-2xl"></i>
-                    <span class="font-bold text-xl text-academic-blue tracking-tight hidden sm:block">Soft Matter Physics Lab</span>
+                    <span class="font-bold text-xl text-academic-blue tracking-tight">Soft Matter Physics Lab</span>
                 </div>
-                
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-1 h-full items-center">
-                    <button data-page="home" class="nav-link h-full px-4 text-academic-accent border-b-2 border-academic-accent font-medium text-sm transition-colors flex items-center">Home</button>
-                    <button data-page="research" class="nav-link h-full px-4 text-slate-600 hover:text-academic-accent border-b-2 border-transparent font-medium text-sm transition-colors flex items-center">Research</button>
-                    <button data-page="publications" class="nav-link h-full px-4 text-slate-600 hover:text-academic-accent border-b-2 border-transparent font-medium text-sm transition-colors flex items-center">Publications</button>
-                    <button data-page="team" class="nav-link h-full px-4 text-slate-600 hover:text-academic-accent border-b-2 border-transparent font-medium text-sm transition-colors flex items-center">Team</button>
-                    <button data-page="contact" class="nav-link h-full px-4 text-slate-600 hover:text-academic-accent border-b-2 border-transparent font-medium text-sm transition-colors flex items-center">Contact</button>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-slate-600 hover:text-academic-accent transition-colors font-medium text-sm">Home</a>
+                    <a href="#research" class="text-slate-600 hover:text-academic-accent transition-colors font-medium text-sm">Research</a>
+                    <a href="#publications" class="text-slate-600 hover:text-academic-accent transition-colors font-medium text-sm">Publications</a>
+                    <a href="#team" class="text-slate-600 hover:text-academic-accent transition-colors font-medium text-sm">Team</a>
+                    <a href="#contact" class="text-slate-600 hover:text-academic-accent transition-colors font-medium text-sm">Contact</a>
                 </div>
-                
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-academic-blue focus:outline-none p-2">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-academic-blue focus:outline-none">
                         <i class="fa-solid fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
-        
         <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-lg absolute w-full left-0">
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <button data-page="home" class="mobile-nav-link w-full text-left block px-3 py-2 rounded-md text-base font-medium text-academic-accent bg-blue-50">Home</button>
-                <button data-page="research" class="mobile-nav-link w-full text-left block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-academic-accent hover:bg-slate-50">Research</button>
-                <button data-page="publications" class="mobile-nav-link w-full text-left block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-academic-accent hover:bg-slate-50">Publications</button>
-                <button data-page="team" class="mobile-nav-link w-full text-left block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-academic-accent hover:bg-slate-50">Team</button>
-                <button data-page="contact" class="mobile-nav-link w-full text-left block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-academic-accent hover:bg-slate-50">Contact</button>
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-academic-accent hover:bg-slate-50">Home</a>
+                <a href="#research" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-academic-accent hover:bg-slate-50">Research</a>
+                <a href="#publications" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-academic-accent hover:bg-slate-50">Publications</a>
+                <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-academic-accent hover:bg-slate-50">Team</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-academic-accent hover:bg-slate-50">Contact</a>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow flex flex-col">
-
-        <!-- ==================== HOME PAGE ==================== -->
-        <section id="page-home" class="page-section animate-fade-in flex-grow flex flex-col">
-            <header class="relative bg-academic-blue overflow-hidden flex-grow flex items-center">
-                <div class="absolute inset-0 opacity-20">
-                    <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <path d="M0,100 L100,0" stroke="white" stroke-width="0.5" fill="none" />
-                        <path d="M0,0 L100,100" stroke="white" stroke-width="0.5" fill="none" opacity="0.3" />
-                    </svg>
-                </div>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 w-full">
-                    <div class="text-center max-w-4xl mx-auto">
-                        <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6">
-                            Welcome to the <span class="text-blue-300">Soft Matter Physics Lab</span>
-                        </h1>
-                        <p class="mt-3 max-w-2xl mx-auto text-lg text-blue-100 sm:text-xl md:mt-5 leading-relaxed">
-                            About the lab in 2 sentences. 
-                        </p>
-                        <p class="mt-4 max-w-2xl mx-auto text-base text-blue-200 md:mt-4 leading-relaxed">
-                            drgreeatye.
-                        </p>
-                        <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-                            <button onclick="navigateTo('research')" class="px-8 py-3 border border-transparent text-base font-medium rounded-md text-academic-blue bg-white hover:bg-slate-50 transition-colors shadow-sm">
-                                Explore Our Research
-                            </button>
-                            <button onclick="navigateTo('publications')" class="px-8 py-3 border border-blue-300 text-base font-medium rounded-md text-white hover:bg-blue-800 transition-colors">
-                                Recent Publications
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        </section>
-
-        <!-- ==================== RESEARCH PAGE ==================== -->
-        <section id="page-research" class="page-section hidden animate-fade-in bg-white flex-grow py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-12 border-b border-slate-200 pb-5">
-                    <h2 class="text-3xl font-bold text-academic-blue tracking-tight">Research Themes</h2>
-                    <p class="mt-2 text-lg text-slate-500">Investigating the boundaries of matter, math, and measurement.</p>
-                </div>
-
-                <div class="space-y-12">
-                    <!-- Area 1 -->
-                    <div class="flex flex-col md:flex-row gap-8 items-start">
-                        <div class="w-16 h-16 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i class="fa-solid fa-droplet text-3xl text-academic-accent"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-slate-900 mb-3">Nanoparticle Interfaces</h3>
-                            <p class="text-slate-600 leading-relaxed text-lg mb-4">
-                                This core research thrust focuses on the behavior of <strong>functionalized iron nanoparticles</strong> at liquid-liquid interfaces. 
-                            </p>
-                            <p class="text-slate-600 leading-relaxed">
-                                Specifically, we are investigating the complex stabilization mechanics driven by <strong>POSS-NH2+</strong> (Polyhedral Oligomeric Silsesquioxanes) functionalization when interacting with <strong>ITO (Indium Tin Oxide) glass</strong> surfaces. Understanding these interactions is critical for developing next-generation active coatings, advanced sensing applications, and smart materials that respond dynamically to environmental stimuli.
-                            </p>
-                        </div>
-                    </div>
-
-                    <hr class="border-slate-100">
-
-                    <!-- Area 2 -->
-                    <div class="flex flex-col md:flex-row gap-8 items-start">
-                        <div class="w-16 h-16 rounded-xl bg-indigo-100 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i class="fa-solid fa-square-root-variable text-3xl text-indigo-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-slate-900 mb-3">Theoretical Physics & Statistical Mechanics</h3>
-                            <p class="text-slate-600 leading-relaxed text-lg mb-4">
-                                Our theoretical work provides the foundational models necessary to interpret complex experimental results.
-                            </p>
-                            <p class="text-slate-600 leading-relaxed">
-                                We delve deeply into <strong>time-dependent harmonic perturbation</strong> and its implications for quantum system transitions. Furthermore, our statistical mechanics research explores non-equilibrium dynamics and phase transitions in confined geometries, applying rigorous mathematical frameworks to predict macroscopic behaviors from microscopic interactions.
-                            </p>
-                        </div>
-                    </div>
-
-                    <hr class="border-slate-100">
-
-                    <!-- Area 3 -->
-                    <div class="flex flex-col md:flex-row gap-8 items-start">
-                        <div class="w-16 h-16 rounded-xl bg-teal-100 flex items-center justify-center flex-shrink-0 mt-1">
-                            <i class="fa-solid fa-microchip text-3xl text-teal-600"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-slate-900 mb-3">Hardware Electronics Design</h3>
-                            <p class="text-slate-600 leading-relaxed text-lg mb-4">
-                                To measure phenomena at the absolute limits of physical detection, commercial equipment is often insufficient.
-                            </p>
-                            <p class="text-slate-600 leading-relaxed">
-                                We design, simulate, and fabricate bespoke lab instrumentation. A major focus is on <strong>low-noise operational amplifier (op-amp) circuitry</strong> tailored for highly sensitive signal extraction from our nanoparticle interfaces. By building custom electronics, we eliminate bottlenecks between the physical phenomena and our data acquisition systems.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== PUBLICATIONS PAGE ==================== -->
-        <section id="page-publications" class="page-section hidden animate-fade-in bg-slate-50 flex-grow py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-10 border-b border-slate-200 pb-5 flex flex-col sm:flex-row sm:items-end justify-between">
-                    <div>
-                        <h2 class="text-3xl font-bold text-academic-blue tracking-tight">Publications</h2>
-                        <p class="mt-2 text-lg text-slate-500">Selected peer-reviewed articles and conference proceedings.</p>
-                    </div>
-                    <a href="#" class="mt-4 sm:mt-0 text-academic-accent font-medium hover:underline flex items-center gap-1">
-                        Google Scholar Profile <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+    <header id="home" class="relative bg-academic-blue overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <!-- Subtle background pattern/texture -->
+            <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0,0 L100,100 M100,0 L0,100" stroke="white" stroke-width="0.5" fill="none" opacity="0.5" />
+            </svg>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24 md:py-32">
+            <div class="text-center max-w-3xl mx-auto">
+                <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl mb-6">
+                    Welcome to the <br/><span class="text-blue-300">Prof. Sajal K. Ghosh Group</span>
+                </h1>
+                <p class="mt-3 max-w-md mx-auto text-base text-blue-100 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                    Exploring the intersections of theoretical physics, complex nanoscale phenomena, and the development of custom instrumentation to push the boundaries of scientific measurement.
+                </p>
+                <div class="mt-10 flex justify-center gap-4">
+                    <a href="#research" class="px-8 py-3 border border-transparent text-base font-medium rounded-md text-academic-blue bg-white hover:bg-slate-50 transition-colors shadow-sm">
+                        Our Research
+                    </a>
+                    <a href="#contact" class="px-8 py-3 border border-blue-300 text-base font-medium rounded-md text-white hover:bg-blue-800 transition-colors">
+                        Join the Lab
                     </a>
                 </div>
+            </div>
+        </div>
+    </header>
 
-                <div class="space-y-6">
-                    <!-- Paper 1 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
-                            <div class="flex-shrink-0">
-                                <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wide">Journal Article</span>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-semibold text-slate-900 mb-2">Interfacial Dynamics of POSS-NH2+ Stabilized Iron Nanoparticles on ITO Substrates</h4>
-                                <p class="text-slate-700 mb-2"><strong>A. Nair</strong>, S. K. Ghosh, J. Doe.</p>
-                                <p class="text-slate-500 italic mb-3">Journal of Colloid and Interface Science, Vol 452, pp 112-124, 2026.</p>
-                                <div class="flex gap-3">
-                                    <a href="#" class="text-sm text-academic-accent hover:underline flex items-center gap-1"><i class="fa-solid fa-file-pdf"></i> PDF</a>
-                                    <a href="#" class="text-sm text-slate-500 hover:text-slate-800 flex items-center gap-1"><i class="fa-solid fa-link"></i> DOI</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <section id="research" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-academic-blue tracking-tight sm:text-4xl">Research Areas</h2>
+                <div class="mt-2 w-24 h-1 bg-academic-accent mx-auto rounded-full"></div>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-500">
+                    Our current investigations span theory, experiment, and hardware design.
+                </p>
+            </div>
 
-                    <!-- Paper 2 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
-                            <div class="flex-shrink-0">
-                                <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold uppercase tracking-wide">Pre-print</span>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-semibold text-slate-900 mb-2">Time-Dependent Harmonic Perturbation in Confined Quantum Systems</h4>
-                                <p class="text-slate-700 mb-2"><strong>A. Nair</strong>, R. Smith.</p>
-                                <p class="text-slate-500 italic mb-3">arXiv:2601.09982 [cond-mat.mes-hall], 2026.</p>
-                                <div class="flex gap-3">
-                                    <a href="#" class="text-sm text-academic-accent hover:underline flex items-center gap-1"><i class="fa-solid fa-file-pdf"></i> arXiv</a>
-                                </div>
-                            </div>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Area 1 -->
+                <div class="bg-academic-light rounded-xl p-8 border border-slate-100 shadow-sm hover:shadow-md transition-shadow group">
+                    <div class="w-14 h-14 rounded-lg bg-blue-100 flex items-center justify-center mb-6 group-hover:bg-academic-accent transition-colors">
+                        <i class="fa-solid fa-droplet text-2xl text-academic-accent group-hover:text-white transition-colors"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Nanoscale Interfacial Phenomena</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Investigating the behavior of functionalized iron nanoparticles at water-toluene interfaces. We also focus on the stabilization mechanics of Polyhedral Oligomeric Silsesquioxanes (POSS) on Indium Tin Oxide (ITO) glass substrates for advanced coating applications.
+                    </p>
+                </div>
 
-                    <!-- Paper 3 -->
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
-                            <div class="flex-shrink-0">
-                                <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-teal-100 text-teal-800 text-xs font-bold uppercase tracking-wide">Conference</span>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-semibold text-slate-900 mb-2">Design of an Ultra-Low Noise Operational Amplifier Circuit for Nanoscale Capacitance Measurement</h4>
-                                <p class="text-slate-700 mb-2"><strong>A. Nair</strong>, S. K. Ghosh.</p>
-                                <p class="text-slate-500 italic mb-3">Proceedings of the IEEE Sensors Conference, 2025.</p>
-                                <div class="flex gap-3">
-                                    <a href="#" class="text-sm text-academic-accent hover:underline flex items-center gap-1"><i class="fa-solid fa-file-pdf"></i> Poster</a>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Area 2 -->
+                <div class="bg-academic-light rounded-xl p-8 border border-slate-100 shadow-sm hover:shadow-md transition-shadow group">
+                    <div class="w-14 h-14 rounded-lg bg-indigo-100 flex items-center justify-center mb-6 group-hover:bg-indigo-500 transition-colors">
+                        <i class="fa-solid fa-square-root-variable text-2xl text-indigo-600 group-hover:text-white transition-colors"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Theoretical & Statistical Mechanics</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Deep mathematical explorations into quantum systems. Our recent focus includes time-dependent harmonic perturbation theory and rigorous investigations surrounding the conditions and proofs of the ergodic hypothesis in complex dynamical systems.
+                    </p>
+                </div>
+
+                <!-- Area 3 -->
+                <div class="bg-academic-light rounded-xl p-8 border border-slate-100 shadow-sm hover:shadow-md transition-shadow group">
+                    <div class="w-14 h-14 rounded-lg bg-teal-100 flex items-center justify-center mb-6 group-hover:bg-teal-500 transition-colors">
+                        <i class="fa-solid fa-microchip text-2xl text-teal-600 group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Hardware & Instrumentation</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Bridging the gap between theory and physical measurement through custom electronics. We design and prototype specialized lab circuits utilizing operational amplifiers and integrated circuits to capture low-noise signals in sensitive environments.
+                    </p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ==================== TEAM PAGE ==================== -->
-        <section id="page-team" class="page-section hidden animate-fade-in bg-white flex-grow py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-12 border-b border-slate-200 pb-5">
-                    <h2 class="text-3xl font-bold text-academic-blue tracking-tight">Our Team</h2>
-                    <p class="mt-2 text-lg text-slate-500">The researchers driving discovery at the Nair Lab.</p>
-                </div>
-
-                <!-- PI -->
-                <div class="mb-16">
-                    <h3 class="text-xl font-bold text-slate-400 uppercase tracking-wider mb-6">Principal Investigator</h3>
-                    <div class="flex flex-col sm:flex-row gap-8 items-start bg-slate-50 p-8 rounded-2xl border border-slate-100">
-                        <div class="w-40 h-40 rounded-full overflow-hidden flex-shrink-0 border-4 border-white shadow-lg mx-auto sm:mx-0">
-                            <img src="https://placehold.co/400x400/0B2046/ffffff?text=PI" alt="Dr. Sajal K. Ghosh" class="w-full h-full object-cover">
-                        </div>
-                        <div class="text-center sm:text-left">
-                            <h4 class="text-2xl font-bold text-slate-900">Dr. Sajal K. Ghosh</h4>
-                            <p class="text-academic-accent font-medium mb-4">Professor of Physics, Shiv Nadar University</p>
-                            <p class="text-slate-600 leading-relaxed mb-4 max-w-2xl">
-                                Dr. Ghosh leads the lab's overarching strategy, bringing decades of experience in statistical mechanics and soft matter physics. His vision directs the synthesis of theoretical derivations with practical hardware engineering to explore novel nanoscale interfaces.
-                            </p>
-                            <div class="flex gap-4 justify-center sm:justify-start">
-                                <a href="#" class="text-slate-400 hover:text-academic-blue"><i class="fa-solid fa-envelope text-xl"></i></a>
-                                <a href="#" class="text-slate-400 hover:text-academic-blue"><i class="fa-brands fa-linkedin text-xl"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Students -->
+    <section id="publications" class="py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
                 <div>
-                    <h3 class="text-xl font-bold text-slate-400 uppercase tracking-wider mb-6">Graduate Students</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        
-                        <!-- Profile 1 -->
-                        <div class="flex flex-col sm:flex-row gap-6 items-start bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                            <div class="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 border-2 border-slate-100 mx-auto sm:mx-0">
-                                <img src="https://placehold.co/200x200/3B82F6/ffffff?text=AN" alt="Anirudh Nair" class="w-full h-full object-cover">
-                            </div>
-                            <div class="text-center sm:text-left">
-                                <h4 class="text-xl font-bold text-slate-900">Anirudh Nair</h4>
-                                <p class="text-academic-accent text-sm font-medium mb-2">PhD Candidate</p>
-                                <p class="text-slate-600 text-sm leading-relaxed mb-3">
-                                    Research focuses on the experimental observation of POSS-NH2+ stabilized nanoparticles on ITO, and the design of the low-noise analog circuits required for interface characterization.
-                                </p>
-                                <a href="#" class="text-slate-400 hover:text-academic-blue text-sm"><i class="fa-solid fa-envelope"></i> Contact</a>
-                            </div>
-                        </div>
-
-                        <!-- Placeholder Student -->
-                        <div class="flex flex-col sm:flex-row gap-6 items-start bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                            <div class="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 border-2 border-slate-100 bg-slate-100 flex items-center justify-center mx-auto sm:mx-0">
-                                <i class="fa-solid fa-user text-3xl text-slate-300"></i>
-                            </div>
-                            <div class="text-center sm:text-left">
-                                <h4 class="text-xl font-bold text-slate-900">Jane Doe</h4>
-                                <p class="text-academic-accent text-sm font-medium mb-2">PhD Student</p>
-                                <p class="text-slate-600 text-sm leading-relaxed mb-3">
-                                    Investigating time-dependent harmonic perturbations in confined quantum systems using advanced computational modelling and statistical mechanics techniques.
-                                </p>
-                                <a href="#" class="text-slate-400 hover:text-academic-blue text-sm"><i class="fa-solid fa-envelope"></i> Contact</a>
-                            </div>
-                        </div>
-
-                    </div>
+                    <h2 class="text-3xl font-bold text-academic-blue tracking-tight">Recent Publications</h2>
+                    <div class="mt-2 w-16 h-1 bg-academic-accent rounded-full"></div>
                 </div>
+                <a href="#" class="mt-4 md:mt-0 text-academic-accent font-medium hover:underline flex items-center gap-1">
+                    View all on Google Scholar <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
             </div>
-        </section>
-
-        <!-- ==================== CONTACT PAGE ==================== -->
-        <section id="page-contact" class="page-section hidden animate-fade-in bg-slate-50 flex-grow py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-12 text-center max-w-2xl mx-auto">
-                    <h2 class="text-3xl font-bold text-academic-blue tracking-tight">Get in Touch</h2>
-                    <p class="mt-4 text-lg text-slate-600">We are always open to collaborations, prospective student inquiries, and scientific discussions.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-                    <!-- Contact Info -->
+            
+            <div class="space-y-4">
+                <!-- Publication 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200 flex flex-col md:flex-row md:items-start gap-4">
+                    <div class="flex-shrink-0 mt-1">
+                        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wide">Journal Article</span>
+                    </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Contact Information</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0 mt-1">
-                                    <i class="fa-solid fa-location-dot text-academic-accent"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-slate-900">Mailing Address</h4>
-                                    <p class="text-slate-600 mt-1 leading-relaxed">
-                                        Department of Physics<br>
-                                        Shiv Nadar Institution of Eminence<br>
-                                        NH91, Tehsil Dadri<br>
-                                        Greater Noida, UP 201314, India
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
-                                    <i class="fa-solid fa-envelope text-academic-accent"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-slate-900">Email</h4>
-                                    <a href="mailto:lab-contact@snu.edu.in" class="text-academic-accent hover:underline">lab-contact@snu.edu.in</a>
-                                </div>
-                            </div>
-                        </div>
+                        <h4 class="text-lg font-semibold text-slate-900 mb-1 hover:text-academic-accent cursor-pointer transition-colors">Stabilization mechanics of POSS on Indium Tin Oxide surfaces</h4>
+                        <p class="text-slate-600 text-sm mb-2"><strong>A. Nair</strong>, PI Name, Collab Name.</p>
+                        <p class="text-slate-500 text-sm italic">Journal of Physical Chemistry C, 2026. DOI: 10.1021/acs.jpcc.placeholder</p>
                     </div>
-
-                    <!-- Contact Form -->
+                </div>
+                <!-- Publication 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200 flex flex-col md:flex-row md:items-start gap-4">
+                    <div class="flex-shrink-0 mt-1">
+                        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold uppercase tracking-wide">Conference</span>
+                    </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Send a Message</h3>
-                        <form class="space-y-4" onsubmit="event.preventDefault(); alert('In a real deployment, this would send an email.');">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-academic-accent focus:border-academic-accent outline-none" required>
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-academic-accent focus:border-academic-accent outline-none" required>
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-slate-700 mb-1">Message</label>
-                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-academic-accent focus:border-academic-accent outline-none resize-none" required></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-academic-blue text-white font-medium py-2 px-4 rounded-md hover:bg-blue-900 transition-colors">
-                                Send Message
-                            </button>
-                        </form>
+                        <h4 class="text-lg font-semibold text-slate-900 mb-1 hover:text-academic-accent cursor-pointer transition-colors">Low-noise Op-Amp prototyping for quantum harmonic measurement</h4>
+                        <p class="text-slate-600 text-sm mb-2"><strong>A. Nair</strong>, PI Name.</p>
+                        <p class="text-slate-500 text-sm italic">APS March Meeting, 2025.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
-
-    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-atom text-slate-500"></i>
-                <span class="font-semibold text-slate-300">Nair Research Lab</span>
+    <section id="team" class="py-20 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-academic-blue tracking-tight sm:text-4xl">Our Team</h2>
+                <div class="mt-2 w-24 h-1 bg-academic-accent mx-auto rounded-full"></div>
             </div>
-            <div class="text-sm">
-                &copy; <span id="year"></span> Shiv Nadar Institution of Eminence. All rights reserved.
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- PI Profile (Placeholder) -->
+                <div class="text-center">
+                    <div class="relative mx-auto w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-slate-50 shadow-md">
+                        <img src="https://placehold.co/400x400/0B2046/ffffff?text=PI" alt="Principal Investigator" class="object-cover w-full h-full">
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Dr. First Last</h3>
+                    <p class="text-academic-accent font-medium text-sm mb-2">Principal Investigator</p>
+                    <p class="text-slate-500 text-sm px-4">Professor of Physics at Shiv Nadar University.</p>
+                </div>
+
+                <!-- Anirudh Nair Profile -->
+                <div class="text-center">
+                    <div class="relative mx-auto w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-slate-50 shadow-md">
+                        <img src="https://placehold.co/400x400/3B82F6/ffffff?text=AN" alt="Anirudh Nair" class="object-cover w-full h-full">
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Anirudh Nair</h3>
+                    <p class="text-academic-accent font-medium text-sm mb-2">PhD Student</p>
+                    <p class="text-slate-500 text-sm px-4">Focuses on statistical mechanics and custom instrumentation.</p>
+                    <div class="mt-3 flex justify-center gap-3 text-slate-400">
+                        <a href="#" class="hover:text-academic-blue transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="hover:text-academic-blue transition-colors"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- Open Position -->
+                <div class="text-center">
+                    <div class="relative mx-auto w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-dashed border-slate-300 flex items-center justify-center bg-slate-50">
+                        <i class="fa-solid fa-user-plus text-3xl text-slate-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Open Position</h3>
+                    <p class="text-academic-accent font-medium text-sm mb-2">Postdoctoral Researcher</p>
+                    <p class="text-slate-500 text-sm px-4">We are looking for researchers with experience in interfacial phenomena.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-academic-blue text-white pt-16 pb-8 border-t-[6px] border-academic-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <!-- Branding & Affiliation -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fa-solid fa-atom text-blue-300 text-2xl"></i>
+                        <span class="font-bold text-xl tracking-tight">Nair Research Lab</span>
+                    </div>
+                    <p class="text-blue-100 text-sm leading-relaxed mb-6">
+                        Advancing the frontiers of physics through rigorous theoretical models and precise custom instrumentation.
+                    </p>
+                    <!-- University Affiliation -->
+                    <div class="flex items-center gap-3 bg-blue-900/50 p-3 rounded-lg border border-blue-800 inline-flex">
+                        <i class="fa-solid fa-building-columns text-blue-300"></i>
+                        <div>
+                            <p class="text-xs text-blue-200">Affiliated with</p>
+                            <p class="text-sm font-semibold">Shiv Nadar University</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 border-b border-blue-800 pb-2">Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-blue-200 hover:text-white transition-colors text-sm">Home</a></li>
+                        <li><a href="#research" class="text-blue-200 hover:text-white transition-colors text-sm">Research</a></li>
+                        <li><a href="#publications" class="text-blue-200 hover:text-white transition-colors text-sm">Publications</a></li>
+                        <li><a href="#team" class="text-blue-200 hover:text-white transition-colors text-sm">Team Members</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 border-b border-blue-800 pb-2">Contact Us</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-blue-300"></i>
+                            <span class="text-blue-100 text-sm">
+                                Department of Physics<br>
+                                Shiv Nadar Institution of Eminence<br>
+                                Greater Noida, UP, India
+                            </span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-blue-300"></i>
+                            <a href="mailto:lab@snu.edu.in" class="text-blue-100 hover:text-white transition-colors text-sm">lab-contact@snu.edu.in</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-900 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-blue-300 text-sm text-center md:text-left">
+                    &copy; <span id="year"></span> Nair Research Lab. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0 flex gap-4">
+                    <a href="#" class="text-blue-300 hover:text-white transition-colors"><i class="fa-brands fa-github text-lg"></i></a>
+                    <a href="#" class="text-blue-300 hover:text-white transition-colors"><i class="fa-brands fa-twitter text-lg"></i></a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Set current year
+        // Set current year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Single Page Application routing logic
-        function navigateTo(pageId) {
-            // 1. Hide all page sections
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.add('hidden');
-            });
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
 
-            // 2. Show the target page section
-            const targetSection = document.getElementById('page-' + pageId);
-            if(targetSection) {
-                targetSection.classList.remove('hidden');
-            }
-
-            // 3. Update Desktop Navigation active states
-            document.querySelectorAll('.nav-link').forEach(link => {
-                if (link.dataset.page === pageId) {
-                    // Active styling
-                    link.classList.remove('text-slate-600', 'border-transparent');
-                    link.classList.add('text-academic-accent', 'border-academic-accent');
-                } else {
-                    // Inactive styling
-                    link.classList.add('text-slate-600', 'border-transparent');
-                    link.classList.remove('text-academic-accent', 'border-academic-accent');
-                }
-            });
-
-            // 4. Update Mobile Navigation active states
-            document.querySelectorAll('.mobile-nav-link').forEach(link => {
-                if (link.dataset.page === pageId) {
-                    link.classList.remove('text-slate-700', 'hover:bg-slate-50');
-                    link.classList.add('text-academic-accent', 'bg-blue-50');
-                } else {
-                    link.classList.add('text-slate-700', 'hover:bg-slate-50');
-                    link.classList.remove('text-academic-accent', 'bg-blue-50');
-                }
-            });
-
-            // 5. Scroll to top of the page smoothly
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Add event listeners to all navigation buttons
-        document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const pageId = e.target.dataset.page;
-                navigateTo(pageId);
-                
-                // Close mobile menu if it was open
-                if (!document.getElementById('mobile-menu').classList.contains('hidden')) {
-                    document.getElementById('mobile-menu').classList.add('hidden');
-                }
-            });
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
         });
 
-        // Mobile menu toggle button logic
-        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+        // Close mobile menu on link click
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
         });
     </script>
 </body>
